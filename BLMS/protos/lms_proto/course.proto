@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package lms_proto;
+
+import "google/protobuf/empty.proto";
+
+service CourseController {
+    rpc List(CourseListRequest) returns (stream Course) {}
+    rpc Create(Course) returns (Course) {}
+    rpc Retrieve(CourseRetrieveRequest) returns (Course) {}
+    rpc Update(Course) returns (Course) {}
+    rpc Destroy(Course) returns (google.protobuf.Empty) {}
+}
+
+message Course {
+    //int32 id = 1;
+    //string course_id = 2;
+    //string course_title = 3;
+    string course_id = 1;
+    string course_title = 2;
+}
+
+message CourseListRequest {
+}
+
+message CourseRetrieveRequest {
+    //int32 id = 1;
+    string course_id = 1;
+}
