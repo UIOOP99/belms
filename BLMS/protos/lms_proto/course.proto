@@ -5,25 +5,24 @@ package lms_proto;
 import "google/protobuf/empty.proto";
 
 service CourseController {
-    rpc List(CourseListRequest) returns (stream Course) {}
-    rpc Create(Course) returns (Course) {}
-    rpc Retrieve(CourseRetrieveRequest) returns (Course) {}
-    rpc Update(Course) returns (Course) {}
-    rpc Destroy(Course) returns (google.protobuf.Empty) {}
+    rpc Login(CourseRequest) returns (stream CourseReply) {}
 }
 
-message Course {
-    //int32 id = 1;
-    //string course_id = 2;
-    //string course_title = 3;
+message CourseReply {
     string course_id = 1;
     string course_title = 2;
 }
 
-message CourseListRequest {
+message CourseRequest {
+    int32 userID = 1;
 }
 
-message CourseRetrieveRequest {
-    //int32 id = 1;
-    string course_id = 1;
+message Assignment {
+}
+
+message File {
+  string title = 1;
+  string start_time = 2;
+  string end_time = 3;
+
 }

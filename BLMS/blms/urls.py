@@ -12,5 +12,6 @@ urlpatterns = [
     path('api/', include(router.urls))
 ]
 
+
 def grpc_handlers(server):
     lms_grpc_handlers(server)

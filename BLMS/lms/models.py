@@ -6,6 +6,7 @@ from django.utils import timezone
 
 from .managers import CustomUserManager
 
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.TextField(unique=True)
     is_staff = models.BooleanField(default=False)
@@ -18,32 +19,26 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.user_id
-        
+
+
 class Course(models.Model):
-    course_id = models.TextField(primary_key = True)
+    course_id = models.TextField(primary_key=True)
     course_title = models.TextField()
 
+
 class Message(models.Model):
-    author = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default=None
-    )
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, default=None, null = True)
-    content = models.TextField(default=None, null = True)
-    date_time = models.DateTimeField(auto_now=False, auto_now_add=False , null = True, default= timezone.now)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=None)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, default=None, null=True)
+    content = models.TextField(default=None, null=True)
+    date_time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, default=timezone.now)
 
     def __str__(self):
         return self.content
 
-class Home_work(models.Model):
-    author = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default=None
-    )
+
+class Homework(models.Model):
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=None)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, default=None)
     note = models.TextField(default='')
     file = models.FileField(upload_to=None, max_length=100)
-    date_time = models.DateTimeField(auto_now=False, auto_now_add=False , null = True)
-
+    date_time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
