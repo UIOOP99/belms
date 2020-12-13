@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
 
 
 class Assignment(models.Model):
@@ -8,8 +7,10 @@ class Assignment(models.Model):
     course_id = models.TextField()
     file_id = models.TextField()
     description = models.TextField(default='')
-    start_date = models.DateTimeField(auto_now=False, auto_now_add=False)
-    deadline = models.DateTimeField(auto_now=False, auto_now_add=False)
+    start_date = models.DateField(auto_now=False, auto_now_add=False)
+    deadline = models.DateField(auto_now=False, auto_now_add=False)
+
+    objects = models.Manager()
 
 
 class Assignment_answer(models.Model):
@@ -18,4 +19,6 @@ class Assignment_answer(models.Model):
     File_id = models.TextField()
     homework_number_id = models.TextField()
     description = models.TextField(default='')
-    date_of_upload = models.DateTimeField(auto_now=False, auto_now_add=False)
+    date_of_upload = models.DateField(auto_now=False, auto_now_add=False)
+
+    objects = models.Manager()
