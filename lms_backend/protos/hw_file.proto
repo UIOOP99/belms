@@ -5,8 +5,17 @@ package lms_proto;
 import "google/protobuf/empty.proto";
 
 service HomeworkController {
+  rpc Userrole(UserRequest) returns (UserReply) {}
   rpc Validation(CourseRequest) returns (CourseReply) {}
   rpc HomeworkID(FileRequest) returns (FileReply){}
+}
+
+message UserRequest {
+  int32 user_id = 1;
+}
+
+message UserReply {
+  string role = 1;
 }
 
 message CourseRequest {
@@ -15,8 +24,7 @@ message CourseRequest {
 }
 
 message CourseReply {
-  bool valid_user = 1;
-  bool valid_course = 2;
+  bool valid_course = 1;
 }
 
 message FileReply {

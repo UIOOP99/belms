@@ -20,11 +20,75 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rhw_file.proto\x12\tlms_proto\x1a\x1bgoogle/protobuf/empty.proto\"3\n\rCourseRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tcourse_id\x18\x02 \x01(\t\"7\n\x0b\x43ourseReply\x12\x12\n\nvalid_user\x18\x01 \x01(\x08\x12\x14\n\x0cvalid_course\x18\x02 \x01(\x08\"\x1b\n\tFileReply\x12\x0e\n\x06hw_url\x18\x01 \x01(\t\"\x1c\n\x0b\x46ileRequest\x12\r\n\x05hw_id\x18\x01 \x01(\t2\x94\x01\n\x12HomeworkController\x12@\n\nValidation\x12\x18.lms_proto.CourseRequest\x1a\x16.lms_proto.CourseReply\"\x00\x12<\n\nHomeworkID\x12\x16.lms_proto.FileRequest\x1a\x14.lms_proto.FileReply\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rhw_file.proto\x12\tlms_proto\x1a\x1bgoogle/protobuf/empty.proto\"\x1e\n\x0bUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"\x19\n\tUserReply\x12\x0c\n\x04role\x18\x01 \x01(\t\"3\n\rCourseRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tcourse_id\x18\x02 \x01(\t\"#\n\x0b\x43ourseReply\x12\x14\n\x0cvalid_course\x18\x01 \x01(\x08\"\x1b\n\tFileReply\x12\x0e\n\x06hw_url\x18\x01 \x01(\t\"\x1c\n\x0b\x46ileRequest\x12\r\n\x05hw_id\x18\x01 \x01(\t2\xd0\x01\n\x12HomeworkController\x12:\n\x08Userrole\x12\x16.lms_proto.UserRequest\x1a\x14.lms_proto.UserReply\"\x00\x12@\n\nValidation\x12\x18.lms_proto.CourseRequest\x1a\x16.lms_proto.CourseReply\"\x00\x12<\n\nHomeworkID\x12\x16.lms_proto.FileRequest\x1a\x14.lms_proto.FileReply\"\x00\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
 
+
+
+_USERREQUEST = _descriptor.Descriptor(
+  name='UserRequest',
+  full_name='lms_proto.UserRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='lms_proto.UserRequest.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=57,
+  serialized_end=87,
+)
+
+
+_USERREPLY = _descriptor.Descriptor(
+  name='UserReply',
+  full_name='lms_proto.UserReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='role', full_name='lms_proto.UserReply.role', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=89,
+  serialized_end=114,
+)
 
 
 _COURSEREQUEST = _descriptor.Descriptor(
@@ -61,8 +125,8 @@ _COURSEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=57,
-  serialized_end=108,
+  serialized_start=116,
+  serialized_end=167,
 )
 
 
@@ -75,15 +139,8 @@ _COURSEREPLY = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='valid_user', full_name='lms_proto.CourseReply.valid_user', index=0,
+      name='valid_course', full_name='lms_proto.CourseReply.valid_course', index=0,
       number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='valid_course', full_name='lms_proto.CourseReply.valid_course', index=1,
-      number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -100,8 +157,8 @@ _COURSEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=110,
-  serialized_end=165,
+  serialized_start=169,
+  serialized_end=204,
 )
 
 
@@ -132,8 +189,8 @@ _FILEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=167,
-  serialized_end=194,
+  serialized_start=206,
+  serialized_end=233,
 )
 
 
@@ -164,15 +221,31 @@ _FILEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=196,
-  serialized_end=224,
+  serialized_start=235,
+  serialized_end=263,
 )
 
+DESCRIPTOR.message_types_by_name['UserRequest'] = _USERREQUEST
+DESCRIPTOR.message_types_by_name['UserReply'] = _USERREPLY
 DESCRIPTOR.message_types_by_name['CourseRequest'] = _COURSEREQUEST
 DESCRIPTOR.message_types_by_name['CourseReply'] = _COURSEREPLY
 DESCRIPTOR.message_types_by_name['FileReply'] = _FILEREPLY
 DESCRIPTOR.message_types_by_name['FileRequest'] = _FILEREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+UserRequest = _reflection.GeneratedProtocolMessageType('UserRequest', (_message.Message,), {
+  'DESCRIPTOR' : _USERREQUEST,
+  '__module__' : 'hw_file_pb2'
+  # @@protoc_insertion_point(class_scope:lms_proto.UserRequest)
+  })
+_sym_db.RegisterMessage(UserRequest)
+
+UserReply = _reflection.GeneratedProtocolMessageType('UserReply', (_message.Message,), {
+  'DESCRIPTOR' : _USERREPLY,
+  '__module__' : 'hw_file_pb2'
+  # @@protoc_insertion_point(class_scope:lms_proto.UserReply)
+  })
+_sym_db.RegisterMessage(UserReply)
 
 CourseRequest = _reflection.GeneratedProtocolMessageType('CourseRequest', (_message.Message,), {
   'DESCRIPTOR' : _COURSEREQUEST,
@@ -211,13 +284,23 @@ _HOMEWORKCONTROLLER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=227,
-  serialized_end=375,
+  serialized_start=266,
+  serialized_end=474,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Userrole',
+    full_name='lms_proto.HomeworkController.Userrole',
+    index=0,
+    containing_service=None,
+    input_type=_USERREQUEST,
+    output_type=_USERREPLY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
   _descriptor.MethodDescriptor(
     name='Validation',
     full_name='lms_proto.HomeworkController.Validation',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_COURSEREQUEST,
     output_type=_COURSEREPLY,
@@ -227,7 +310,7 @@ _HOMEWORKCONTROLLER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='HomeworkID',
     full_name='lms_proto.HomeworkController.HomeworkID',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_FILEREQUEST,
     output_type=_FILEREPLY,

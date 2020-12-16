@@ -14,6 +14,11 @@ class HomeworkControllerStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.Userrole = channel.unary_unary(
+                '/lms_proto.HomeworkController/Userrole',
+                request_serializer=hw__file__pb2.UserRequest.SerializeToString,
+                response_deserializer=hw__file__pb2.UserReply.FromString,
+                )
         self.Validation = channel.unary_unary(
                 '/lms_proto.HomeworkController/Validation',
                 request_serializer=hw__file__pb2.CourseRequest.SerializeToString,
@@ -28,6 +33,12 @@ class HomeworkControllerStub(object):
 
 class HomeworkControllerServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def Userrole(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def Validation(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -44,6 +55,11 @@ class HomeworkControllerServicer(object):
 
 def add_HomeworkControllerServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Userrole': grpc.unary_unary_rpc_method_handler(
+                    servicer.Userrole,
+                    request_deserializer=hw__file__pb2.UserRequest.FromString,
+                    response_serializer=hw__file__pb2.UserReply.SerializeToString,
+            ),
             'Validation': grpc.unary_unary_rpc_method_handler(
                     servicer.Validation,
                     request_deserializer=hw__file__pb2.CourseRequest.FromString,
@@ -63,6 +79,23 @@ def add_HomeworkControllerServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class HomeworkController(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Userrole(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/lms_proto.HomeworkController/Userrole',
+            hw__file__pb2.UserRequest.SerializeToString,
+            hw__file__pb2.UserReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Validation(request,

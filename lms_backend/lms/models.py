@@ -22,3 +22,12 @@ class Assignment_answer(models.Model):
     date_of_upload = models.DateField(auto_now=False, auto_now_add=False)
 
     objects = models.Manager()
+
+
+class Message(models.Model):
+    user_id = models.TextField()
+    course_id = models.TextField()
+    msg = models.TextField(default='')
+
+    objects = models.Manager()
+
