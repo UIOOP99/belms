@@ -10,10 +10,13 @@ from .models import Assignment, Assignment_answer
 import datetime
 from rest_framework import  status
 from rest_framework.permissions import BasePermission, AllowAny, SAFE_METHODS
+import jwt
+import base64
 
 
 
 # Create your views here.
+secret  =  base64.b64decode('LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFBdmRrYTFzcTBRd2h0QStieDFBVHVTSUEzT2oxOQpYMk0rVExzZDF3SlBGbTI0U05OUXFUWFBidFFLamhFemhsK2ZDNWExZ2ttRzNpaTJBcWt6MnRaTWUzVUFDb3JSCm1QZXh5blR0cFFSQWFKalhDOGpkRXNDU3UvMlMrblpBMmdBc25uNDBRQWxzaEpBZHMybmRYd1FBSjk5T2tXeTUKcEduRkQ2M042Vy84ODlZQW9acz0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t')
 
 class assignment_upload(APIView):
     permission_classes = [AllowAny]
@@ -21,7 +24,9 @@ class assignment_upload(APIView):
         serializer = AssignmentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = Assignment()
-        instance.user_id = request.auth.payload['Username']
+        token = request.headers.get('jwt')
+        decoded_token = jwt.decode(token, secret, algorithm='ES512')
+        instance.user_id = decoded_token['user_id']
         instance.course_id = serializer.validated_data['course_id']
         instance.file_id= serializer.validated_data['file_id']
         instance.description = serializer.validated_data['description']
