@@ -1,7 +1,21 @@
-from ..protos import hw_file_pb2_grpc
+import sys
+
+from lms.models import Assignment
+from lms.serializer import AssignmentSerializer
+
+sys.path.append("..")
+from protos import hw_file_pb2_grpc
+from django_grpc_framework import generics
+import grpc
+from concurrent import futures
+
+#class HomeworkControllerServicer(generics.ModelService):
 
 
 class HomeworkControllerServicer(hw_file_pb2_grpc.HomeworkControllerServicer):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+
     def HomeworkID(self, request, context):
         url_list = []
         url = "www.google.com"
@@ -18,6 +32,18 @@ class HomeworkControllerServicer(hw_file_pb2_grpc.HomeworkControllerServicer):
         else:
             return "STUDENT"
             """
+        print("**************************4 server")
         return "PROFESSOR"
 
 
+"""def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    hw_file_pb2_grpc.add_HomeworkControllerServicer_to_server(HomeworkControllerServicer(), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    server.wait_for_termination()
+
+
+if __name__ == '__main__':
+    serve()
+"""

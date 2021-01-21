@@ -24,7 +24,7 @@ SECRET_KEY = '4o&alrt4d4(jbs@(i6)*7!ipup7unigz$2n4g-(#n1u1)s$hi='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lms.apps.LmsConfig',
     'rest_framework',
+    'django_grpc_framework',
 ]
 
 MIDDLEWARE = [
@@ -100,19 +101,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+GRPC_FRAMEWORK = {
+    'ROOT_HANDLERS_HOOK': 'myPro.urls.grpc_handlers',
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

@@ -35,6 +35,7 @@ class assignment_upload(APIView):
         userID = decoded_token['user_id']
         courseID  = serializer.validated_data['course_id']
 
+        print("*******************************1 view")
         role = client.run_user(userID)
         if role == "PROFESSOR":
             valid_course = client.run_course(userID, courseID)

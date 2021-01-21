@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class Assignment(models.Model):
-    user_id = models.TextField()
+    user_id = models.PositiveBigIntegerField()
     course_id = models.TextField()
     file_id = models.TextField()
     description = models.TextField(default='')
@@ -14,7 +14,7 @@ class Assignment(models.Model):
 
 
 class Assignment_answer(models.Model):
-    user_id = models.TextField()
+    user_id = models.PositiveBigIntegerField()
     course_id = models.TextField()
     file_id = models.TextField()
     homework_number_id = models.TextField()
@@ -25,7 +25,7 @@ class Assignment_answer(models.Model):
 
 
 class Message(models.Model):
-    user_id = models.TextField()
+    user_id = models.PositiveBigIntegerField()
     course_id = models.TextField()
     msg = models.TextField(default='')
     date_of_send = models.DateField(auto_now=False, auto_now_add=False)

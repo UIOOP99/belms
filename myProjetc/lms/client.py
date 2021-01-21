@@ -11,7 +11,7 @@ def run_file(hwID):
 
 
 def run_course(userID, courseID):
-    with grpc.insecure_channel('localhost:8080') as channel:
+    with grpc.insecure_channel('localhost:50051') as channel:
         stub = hw_file_pb2_grpc.HomeworkControllerStub(channel)
         validation = stub.Validation(hw_file_pb2.CourseRequest(user_id=userID, course_id=courseID))
         return validation.valid_user, validation.valid_course
@@ -20,5 +20,7 @@ def run_course(userID, courseID):
 def run_user(userID):
     with grpc.insecure_channel('localhost:50051', options=(('grpc.enable_http_proxy', 0), )) as channel:
         stub = hw_file_pb2_grpc.HomeworkControllerStub(channel)
+        print("***************************2 client")
         user_role = stub.Userrole(hw_file_pb2.UserRequest(user_id=userID))
+        print("******************************3 client")
         return user_role.role

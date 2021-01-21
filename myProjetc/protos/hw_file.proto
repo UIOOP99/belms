@@ -19,7 +19,7 @@ message UserReply {
 }
 
 message CourseRequest {
-  string user_id = 1;
+  int32 user_id = 1;
   string course_id = 2;
 }
 
