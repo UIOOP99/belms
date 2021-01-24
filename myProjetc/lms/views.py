@@ -194,7 +194,6 @@ import base64
 from . import client
 
 
-# Create your views here.
 secret = base64.b64decode('LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFBdmRrYTFzcTBRd2h0QStieDFBVHVTSUEzT2oxOQpYMk0rVExzZDF3SlBGbTI0U05OUXFUWFBidFFLamhFemhsK2ZDNWExZ2ttRzNpaTJBcWt6MnRaTWUzVUFDb3JSCm1QZXh5blR0cFFSQWFKalhDOGpkRXNDU3UvMlMrblpBMmdBc25uNDBRQWxzaEpBZHMybmRYd1FBSjk5T2tXeTUKcEduRkQ2M042Vy84ODlZQW9acz0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t')
 
 
@@ -209,14 +208,7 @@ class assignment_upload(APIView):
         userID = decoded_token['user_id']
         courseID  = serializer.validated_data['course_id']
 
-        print("*******************************1 view")
-        #role = client.run_user(userID)
-        #if role == "PROFESSOR":
-        #    valid_course = client.run_course(userID, courseID)
-            #if valid_course:
         instance = Assignment()
-        #token = request.headers.get('jwt')
-        #decoded_token = jwt.decode(token, secret, algorithm='ES512')
         instance.user_id = userID
         instance.course_id = courseID
         instance.file_id = serializer.validated_data['file_id']
@@ -238,10 +230,6 @@ class assignment_answer_upload(APIView):
         userID = decoded_token['user_id']
         courseID  = serializer.validated_data['course_id']
 
-        #role = client.run_user(userID)
-        #if role == "STUDENT":
-        #   valid_course = client.run_course(userID, courseID)
-            #if valid_course:
         instance = Assignment_answer()
         instance.user_id = userID
         instance.course_id = courseID
@@ -276,12 +264,6 @@ class assignment_download(APIView):
         hw_num_id = serializer.validated_data['homework_number_id']
         q1 = Assignment_answer.objects.filter(course_id=courseID, homework_number_id=hw_num_id)
         fileID = q1.values("user_id", "file_id")
-        """q2 = Assignment_answer.objects.filter(course_id=courseID, homework_number_id=hw_num_id)
-        student_id = q2.values("file_id")
-        self.result.append(fileID)
-        self.result.append(student_id)
-        print(self.result)
-        #return Response(status=status.HTTP_302_FOUND)"""
         serializer2 = AnswerDownloadResSerializer(fileID, many=True)
         return Response(serializer2.data)
 
