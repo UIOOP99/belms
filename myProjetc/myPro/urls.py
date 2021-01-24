@@ -18,9 +18,9 @@ urlpatterns = [
 ]
 
 
-def grpc_handlers(server):
+"""def grpc_handlers(server):
     #server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    hw_file_pb2_grpc.add_HomeworkControllerServicer_to_server(HomeworkControllerServicer(), server)
+    hw_file_pb2_grpc.add_HomeworkControllerServicer_to_server(HomeworkControllerServicer(), server)"""
 
 """def grpc_handlers(server):
     hw_file_pb2_grpc.add_HomeworkControllerServicer_to_server(HomeworkControllerServicer.Userrole(), server)
